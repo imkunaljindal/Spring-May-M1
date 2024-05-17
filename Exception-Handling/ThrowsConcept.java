@@ -3,14 +3,10 @@ import java.sql.SQLException;
 
 public class ThrowsConcept {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         int a = 10;
         int b = 0;
-        try {
-            int c = divide(a,b);
-        } catch (Exception e) {
-            throw new RuntimeException(e.getMessage());
-        }
+        int c = divide(a,b);
     }
 
     static int divide(int a , int b) throws Exception {
