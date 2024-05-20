@@ -1,4 +1,4 @@
-package com.acciojob.OfficeManagementApp;
+package com.acciojob.OfficeManagementApp.model;
 
 public class Manager {
 
