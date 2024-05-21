@@ -6,8 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
-@Scope("prototype")
 public class EmployeeService {
 
     @Autowired
@@ -27,5 +28,9 @@ public class EmployeeService {
 
     public Employee updateSalary(int empId, int newSalary) {
         return employeeRepository.updateSalary(empId,newSalary);
+    }
+
+    public Employee getHighestSalaryEmp() {
+        return employeeRepository.getHighestSalaryEmp();
     }
 }

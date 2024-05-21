@@ -9,13 +9,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController
+@RequestMapping("/employee")
 public class EmployeeController {
 
     @Autowired
     EmployeeService employeeService;
-
-    @Autowired
-    EmployeeService employeeService2;
 
     @PostMapping("/add-employee")
     public String addEmployee(@RequestBody Employee employee) {
@@ -25,8 +23,6 @@ public class EmployeeController {
 
     @GetMapping("/get-employee")
     public Employee getEmployee(@RequestParam("id") int empId) {
-        System.out.println(employeeService);
-        System.out.println(employeeService2);
         return employeeService.getEmployee(empId);
     }
 
@@ -42,5 +38,11 @@ public class EmployeeController {
     public Employee updateSalary(@RequestParam("id") int empId,
                                  @RequestParam("new-salary") int newSalary) {
         return employeeService.updateSalary(empId, newSalary);
+    }
+
+    // employee with the highest salary
+    @GetMapping("/get-highest-salary")
+    public Employee getHighestSalaryEmp() {
+        return employeeService.getHighestSalaryEmp();
     }
 }

@@ -3,7 +3,9 @@ package com.acciojob.OfficeManagementApp.repository;
 import com.acciojob.OfficeManagementApp.model.Employee;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Repository
@@ -28,5 +30,18 @@ public class EmployeeRepository {
         Employee employee = empDb.get(empId);
         employee.setSalary(newSalary);
         return employee;
+    }
+
+    public Employee getHighestSalaryEmp() {
+        int maxSalary = 0;
+        Employee highestPaidEmp = null;
+        for(int empId: empDb.keySet()) {
+            Employee currEmp = empDb.get(empId);
+            if(currEmp.getSalary() > maxSalary) {
+                maxSalary = currEmp.getSalary();
+                highestPaidEmp = currEmp;
+            }
+        }
+        return highestPaidEmp;
     }
 }
