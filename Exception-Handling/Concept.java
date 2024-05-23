@@ -44,6 +44,5 @@ public class Concept {
         catch (Exception e) {
             System.out.println("D");
         }
-
     }
 }
