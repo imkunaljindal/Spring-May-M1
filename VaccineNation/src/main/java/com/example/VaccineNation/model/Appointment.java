@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.sql.Date;
 
@@ -22,6 +23,7 @@ public class Appointment {
 
     private String appointmentId;
 
+    @CreationTimestamp
     private Date dateOfApppointment;
 
     @Enumerated(value = EnumType.STRING)
