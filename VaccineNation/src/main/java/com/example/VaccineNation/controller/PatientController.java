@@ -3,10 +3,7 @@ package com.example.VaccineNation.controller;
 import com.example.VaccineNation.model.Patient;
 import com.example.VaccineNation.service.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/patient")
@@ -24,5 +21,10 @@ public class PatientController {
         catch (Exception e) {
             return "Some issue while registering the patient";
         }
+    }
+
+    @GetMapping("/get")
+    public Patient getPatient(@RequestParam("id") int id) {
+         return patientService.getPatient(id);
     }
 }
