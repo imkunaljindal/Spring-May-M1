@@ -19,6 +19,7 @@ public class Doctor {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @Column(name = "full_name")
     private String name;
 
     private int age;

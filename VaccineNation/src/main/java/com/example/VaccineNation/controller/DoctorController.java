@@ -3,10 +3,7 @@ package com.example.VaccineNation.controller;
 import com.example.VaccineNation.model.Doctor;
 import com.example.VaccineNation.service.DoctorService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/doctor")
@@ -21,4 +18,10 @@ public class DoctorController {
     }
 
     // get the doctor by id
+
+    // delete a doctor by id
+    @DeleteMapping("/delete")
+    public String deleteDoctor(@RequestParam("id") int id) {
+        return doctorService.deleteDoctor(id);
+    }
 }

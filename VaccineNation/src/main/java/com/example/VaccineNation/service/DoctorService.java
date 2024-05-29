@@ -15,4 +15,9 @@ public class DoctorService {
         doctorRepository.save(doctor);
         return "Doctor saved successfully";
     }
+
+    public String deleteDoctor(int id) {
+        doctorRepository.deleteById(id);
+        return "Doctor has been deleted";
+    }
 }

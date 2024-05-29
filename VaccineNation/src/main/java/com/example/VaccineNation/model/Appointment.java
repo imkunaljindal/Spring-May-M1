@@ -33,7 +33,6 @@ public class Appointment {
     @JoinColumn
     Doctor doctor;
 
-
     @OneToOne
     @JoinColumn
     Patient patient;
