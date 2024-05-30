@@ -1,6 +1,8 @@
 package com.example.VaccineNation.service;
 
 import com.example.VaccineNation.Enum.AppointmentStatus;
+import com.example.VaccineNation.dto.response.AppointmentResponse;
+import com.example.VaccineNation.dto.response.PatientResponse;
 import com.example.VaccineNation.exception.DoctorNotFoundException;
 import com.example.VaccineNation.exception.PatientNotFoundException;
 import com.example.VaccineNation.model.Appointment;
@@ -28,7 +30,7 @@ public class AppointmentService {
     @Autowired
     AppointmentRepo appointmentRepo;
 
-    public Appointment bookAppointment(int patientId, int doctorId) {
+    public AppointmentResponse bookAppointment(int patientId, int doctorId) {
         Optional<Patient> patientOptional = patientRepository.findById(patientId);
         if(patientOptional.isEmpty()) {
             throw new PatientNotFoundException("Invalid patient id");
@@ -49,6 +51,23 @@ public class AppointmentService {
         appointment.setDoctor(doctor);
         appointment.setPatient(patient);
 
-        return appointmentRepo.save(appointment);
+        Appointment savedAppiontment = appointmentRepo.save(appointment);
+
+        // model to response dto
+        AppointmentResponse appointmentResponse = new AppointmentResponse();
+        appointmentResponse.setAppointmentId(savedAppiontment.getAppointmentId());
+        appointmentResponse.setStatus(savedAppiontment.getStatus());
+        appointmentResponse.setDateOfApppointment(savedAppiontment.getDateOfApppointment());
+        appointmentResponse.setDoctorName(savedAppiontment.getDoctor().getName());
+
+        Patient savedPatient = savedAppiontment.getPatient();
+        PatientResponse patientResponse = new PatientResponse();
+        patientResponse.setName(savedPatient.getName());
+        patientResponse.setEmailId(savedPatient.getEmailId());
+        patientResponse.setVaccinated(savedPatient.isVaccinated());
+
+        appointmentResponse.setPatientResponse(patientResponse);
+
+        return appointmentResponse;
     }
 }
